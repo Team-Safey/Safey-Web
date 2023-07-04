@@ -5,17 +5,24 @@ import Ranking from "./Page/Ranking";
 import Home from "./Page/Home";
 import Profile from "./Page/Profile";
 import Quiz from "./Page/Quiz";
+import Login from "./Page/Login/Login";
+import SignUp from "./Page/Login/SignUp";
+import { RecoilRoot } from "recoil";
 
 function App() {
   return (
     <div>
-      <GlobalStyle />
-      <Routes>
-        <Route path="/" Component={Home} />
-        <Route path="/ranking" Component={Ranking} />
-        <Route path="/quiz/:category" element={<Quiz />} />
-        <Route path="/profile/:username" element={<Profile />} />
-      </Routes>
+      <RecoilRoot>
+        <GlobalStyle />
+        <Routes>
+          <Route path="/" Component={Home} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/ranking" Component={Ranking} />
+          <Route path="/quiz/:category" element={<Quiz />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </RecoilRoot>
     </div>
   );
 }
