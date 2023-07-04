@@ -61,7 +61,7 @@ export default function Login() {
           }}
         />
         <GoToSignUp>
-          아직 회원이 아니신가요?<Link to="/signUp">회원가입하기</Link>
+          아직 회원이 아니신가요?<Link to="/signUp"> 회원가입하기</Link>
         </GoToSignUp>
       </TextFiled>
     </>
