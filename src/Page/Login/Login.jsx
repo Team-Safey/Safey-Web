@@ -1,12 +1,26 @@
 import { styled } from "styled-components";
 import TextInput from "../../Components/input";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Logo } from "../../assets";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Btn from "../../Components/AnsBtn";
+import { login } from "../../apis/auth";
 
 export default function Login() {
-  const [id, setId] = useState("");
-  const [pw, setPw] = useState("");
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+  });
+  const [disabledState, setDisabledState] = useState(true);
+  const navi = useNavigate();
+
+  useEffect(() => {
+    if (state.id !== "" && state.pw !== "") {
+      setDisabledState(false);
+    } else {
+      setDisabledState(true);
+    }
+  }, [state]);
 
   return (
     <>
@@ -16,16 +30,35 @@ export default function Login() {
       </Title>
       <TextFiled>
         <TextInput
-          placeholder="아이디를 입력해 주세요"
-          value={id}
+          placeholder="이메일을 입력해 주세요"
+          value={state.email}
           onChange={(e) => {
-            setId(e.target.value);
+            setState({
+              ...state,
+              email: e.target.value,
+            });
           }}
         />
         <TextInput
           placeholder="비밀번호를 입력해 주세요"
-          value={pw}
-          onChange={(e) => setPw(e.target.value)}
+          value={state.password}
+          onChange={(e) =>
+            setState({
+              ...state,
+              password: e.target.value,
+            })
+          }
+        />
+        <Btn
+          text="로그인"
+          disabled={disabledState}
+          onClick={async () => {
+            await login(state).then((response) => {
+              if (response) {
+                navi("/");
+              }
+            });
+          }}
         />
         <GoToSignUp>
           아직 회원이 아니신가요?<Link to="/signUp">회원가입하기</Link>

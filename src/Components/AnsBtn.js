@@ -13,7 +13,7 @@ export default function Btn({ disabled, text, onClick, 답 }) {
   );
 }
 const Jeongdab = styled.button`
-  height: 100%;
+  height: 50px;
   width: 100%;
   font-size: 16px;
   font-weight: bold;
