@@ -1,8 +1,13 @@
 import styled, { css } from "styled-components";
 
-export default function Btn({ disabled, text, onClick }) {
+export default function Btn({ disabled, text, onClick, 답 }) {
   return (
-    <Jeongdab isDisabled={!disabled} disabled={disabled} onClick={onClick}>
+    <Jeongdab
+      답={답}
+      isDisabled={!disabled}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {text}
     </Jeongdab>
   );

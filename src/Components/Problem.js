@@ -1,4 +1,4 @@
-import ProblemData from "./Problem.json";
+import ProblemData from "../Doc/Problem.json";
 import React from "react";
 import styled from "styled-components";
 
