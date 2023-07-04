@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import TextInput from "../../Component/input";
+import TextInput from "../../Components/input";
 import { useState } from "react";
 import { Logo } from "../../assets";
 import { Link } from "react-router-dom";

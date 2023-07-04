@@ -1,12 +1,12 @@
-import PickBtn from "./Components/PickBtn";
-import Btn from "./Components/AnsBtn";
+import PickBtn from "../Components/PickBtn";
+import Btn from "../Components/AnsBtn";
 import styled from "styled-components";
-import Problem from "./Components/Problem";
-import Help from "./Components/Help";
+import Problem from "../Components/Problem";
+import Help from "../Components/Help";
 export default function Home() {
   return (
     <Hom>
-        <Help text="문제를 읽고 4개의 답 중 하나를 선택해주세요."/>
+      <Help text="문제를 읽고 4개의 답 중 하나를 선택해주세요." />
       <Problem />
       <PickBtn
         disabled={false}
@@ -26,6 +26,6 @@ export default function Home() {
   );
 }
 const Hom = styled.div`
-  /* display: flex; */
+  display: flex;
   flex-direction: column;
 `;
