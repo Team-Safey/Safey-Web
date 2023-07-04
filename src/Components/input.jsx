@@ -24,11 +24,11 @@ export default function TextInput({
 
 const Container = styled.input`
   width: 100%;
-  height: 48px;
+  height: 50px;
   background-color: white;
   border-radius: 15px;
   padding: 16px;
-  box-shadow: 0px 0px 15px 0px rgba(105, 105, 105, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(105, 105, 105, 0.13);
   outline: none;
   ${(props) =>
     props.isSuccess
