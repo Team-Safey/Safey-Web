@@ -14,7 +14,7 @@ export default function Year({ disabled, onClick, isSelect }) {
 }
 const Years = styled.button`
   font-weight: bold;
-  border: none;
+  border: none;///
   border-radius: 16px;
   width: 100%;
   height: 32px;

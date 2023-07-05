@@ -4,10 +4,16 @@ import GlobalStyle from "./GlobalStyle";
 import Ranking from "./Page/Ranking";
 import Home from "./Page/Home";
 import Profile from "./Page/Profile";
+<<<<<<< HEAD
 import Quiz from "./Page/Quiz";
 import Login from "./Page/Login/Login";
 import SignUp from "./Page/Login/SignUp";
 import Score from "./Page/Scroe";
+=======
+import Login from "./Page/Login/Login";
+import SignUp from "./Page/Login/SignUp";
+import Quiz from "./Page/Quiz";
+>>>>>>> main
 import { RecoilRoot } from "recoil";
 
 function App() {
