@@ -1,27 +1,39 @@
 import styled from "styled-components";
 import Oanswer from "./O";
 import Xanswer from "./X";
+import { useState, useEffect } from "react";
 
-export default function QuizOX({ data, select, setSelect }) {
+export default function QuizOX({ data, select, setSelect, isCorrect }) {
+  const [answer, setAnswer] = useState("");
+
+  useEffect(() => {
+    setAnswer(data.answer);
+  }, [data]);
+
   return (
     <Dom>
       <Oanswer
-        isSelect={select.userAnswer === "O" && true}
-        disabled={false}
+        //option={isCorrect !== "" ? (answer === "O" ? true : false) : ""}
+        //success={isCorrect && select.user_answer === data.answer}
+        isCorrect={isCorrect}
+        isSelect={select.user_answer === "O" && true}
+        //disabled={isCorrect !== "" ? true : false}
         onClick={() => {
           setSelect({
             ...select,
-            userAnswer: "O",
+            user_answer: "O",
           });
         }}
       />
       <Xanswer
-        isSelect={select.userAnswer === "X" && true}
-        disabled={false}
+        //option={isCorrect !== "" ? (answer === "O" ? true : false) : ""}
+        isSelect={select.user_answer === "X" && true}
+        isCorrect={isCorrect}
+        //disabled={isCorrect !== "" ? true : false}
         onClick={() => {
           setSelect({
             ...select,
-            userAnswer: "X",
+            user_answer: "X",
           });
         }}
       />

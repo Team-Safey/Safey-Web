@@ -1,17 +1,21 @@
 import styled, { css } from "styled-components";
 
-export default function Choice({ data, select, setSelect }) {
-  const { choice_one, choice_two, choice_three, choice_four } = data;
+export default function Choice({ data, select, setSelect, isCorrect }) {
+  const { choice_one, choice_two, choice_three, choice_four, choice_answer } =
+    data;
   const choices = [choice_one, choice_two, choice_three, choice_four];
   return (
     <Div>
       {choices.map((item, index) => (
         <Seontaegji
-          isSelected={select.userAnswer === index + 1 + ""}
+          my={index+1}
+          choice_answer={choice_answer}
+          isCorrect={isCorrect}
+          isSelected={select.user_answer === index + 1}
           onClick={() => {
             setSelect({
               ...select,
-              userAnswer: index + 1 + "",
+              user_answer: index + 1,
             });
           }}
         >
@@ -44,12 +48,32 @@ const Seontaegji = styled.button`
   border: solid 1px #e1e1e1;
   box-shadow: 0px 0px 15px 0px rgba(105, 105, 105, 0.13);
   box-sizing: border-box;
-  ${(props) =>
-    props.isSelected === true
-      ? css`
-          border: solid 2px #4863c5;
+  ${(props) => {
+    if (props.isCorrect === "") {
+      return (
+        props.isSelected &&
+        css`
+          border: 2px solid #4863c5;
         `
-      : css`
-          border: solid 1px #e1e1e1;
-        `}
+      );
+    } else {
+      if (props.isCorrect === true && props.isSelected === true) {
+        return css`
+          border: 2px solid #68cd72;
+        `;
+      } else if (props.isCorrect === false && props.isSelected === true) {
+        return css`
+          border: 2px solid #e54949;
+        `;
+      } else if (
+        props.isCorrect === false &&
+        props.isSelected === false &&
+        props.choice_answer == props.my
+      ) {
+        return css`
+          border: 2px solid #68cd72;
+        `;
+      }
+    }
+  }}
 `;

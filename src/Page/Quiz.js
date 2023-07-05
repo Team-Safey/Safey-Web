@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import GaugeBar from "../Components/gauge";
 import { LeftArrow } from "../assets/icon";
@@ -7,12 +7,12 @@ import { useNavigate } from "react-router-dom";
 import { traffic, life, residential, industrial } from "../apis/quiz";
 import QuizType from "../Components/quiz/quizType";
 
-// const categoryName = {
-//   교통안전: traffic(),
-//   생활안전: life(),
-//   주거안전: residential(),
-//   산업안전: industrial(),
-// };
+const categoryName = {
+  교통안전: traffic(),
+  생활안전: life(),
+  주거안전: residential(),
+  산업안전: industrial(),
+};
 
 export default function Quiz() {
   const { category } = useParams();
@@ -20,27 +20,14 @@ export default function Quiz() {
   const [quizList, setQuizList] = useState([]);
   const [quizNumber, setQuiNumber] = useState(0);
 
-  // async function quiz() {
-  //   const result = await categoryName[category];
-  //   setQuizList(result.data.quiz_lists);
-  // }
-  // quiz();
-  console.log(quizList);
+  async function quiz() {
+    const result = await categoryName[category];
+    setQuizList(result.data.quiz_lists);
+  }
 
-  const data = {
-    quiz_id: 3,
-    title: "휴대전화 사용은 작업 중에도 안전하게 할 수 있는 행동입니다.",
-    description: "휴대전화 사용은 위험합니다.",
-    choice_one: "1",
-    choice_two: "2",
-    choice_three: "3",
-    choice_four: "4",
-    answer: "",
-    choice_answer: 1,
-    score: null,
-    category: "RESIDENTIAL_SAFETY",
-    quiz_type: "answer",
-  };
+  useEffect(() => {
+    quiz();
+  }, []);
 
   return (
     <Container>
@@ -51,7 +38,13 @@ export default function Quiz() {
         <p>{category}</p>
       </Header>
       <GaugeBar solve={quizNumber + 1} />
-      <QuizType data={data} />
+      <QuizType
+        indexNum={quizNumber}
+        data={quizList[quizNumber]}
+        next={() => {
+          setQuiNumber((pre) => pre + 1);
+        }}
+      />
     </Container>
   );
 }

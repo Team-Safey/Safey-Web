@@ -23,7 +23,6 @@ export const login = async (body) => {
       i = 1;
     })
     .catch((error) => {
-      console.log(error);
       i = 0;
     });
   return i;

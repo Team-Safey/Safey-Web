@@ -15,7 +15,9 @@ export const getUser = async () => {
       반환값 = response.data;
     })
     .catch((error) => {
-      console.error(error);
+      if (error.response.status === 401) {
+        window.location.replace("/login");
+      }
     });
 
   return 반환값;

@@ -31,11 +31,11 @@ const Container = styled.input`
   box-shadow: 0px 0px 10px 0px rgba(105, 105, 105, 0.13);
   outline: none;
   ${(props) =>
-    props.isSuccess
+    props.isSuccess === true
       ? css`
           border: 2px solid #68cd72;
         `
-      : props.isError
+      : props.isError === true
       ? css`
           border: 2px solid #e54949;
         `

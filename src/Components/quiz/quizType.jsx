@@ -1,34 +1,63 @@
 import styled from "styled-components";
 import QuizOX from "./QuizOX";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Btn from "../AnsBtn";
 import JSConfetti from "js-confetti";
 import Choice from "./Choice";
 import StringQuiz from "./stringQuiz";
+import { ox_check } from "../../apis/quiz";
+import { choice_check } from "../../apis/quiz";
+import { useNavigate } from "react-router-dom";
 
 const quiz_type_string = {
   OX: "문제를 읽고 맞으면 O, 틀리면 X를 선택해주세요.",
-  choice: "문제를 읽고 4개의 답 중 하나를 선택해 주세요",
-  answer: "문제를 읽고 빈칸에 알맞은 글자를 작성해주세요.",
+  CHOICE: "문제를 읽고 4개의 답 중 하나를 선택해 주세요",
+  BLANK: "문제를 읽고 빈칸에 알맞은 글자를 작성해주세요.",
 };
 
-function QuizInput({ data, select, setSelect }) {
-  switch (data.quiz_type) {
+function QuizInput({ data, select, setSelect, isCorrect }) {
+  switch (data?.quiz_type) {
     case "OX":
-      return <QuizOX data={data} select={select} setSelect={setSelect} />;
-    case "choice":
-      return <Choice data={data} select={select} setSelect={setSelect} />;
-    case "answer":
-      return <StringQuiz data={data} state={select} setState={setSelect} />;
+      return (
+        <QuizOX
+          data={data}
+          select={select}
+          setSelect={setSelect}
+          isCorrect={isCorrect}
+        />
+      );
+    case "CHOICE":
+      return (
+        <Choice
+          data={data}
+          select={select}
+          setSelect={setSelect}
+          isCorrect={isCorrect}
+        />
+      );
+    case "BLANK":
+      return (
+        <StringQuiz
+          data={data}
+          state={select}
+          setState={setSelect}
+          isCorrect={isCorrect}
+        />
+      );
     default:
       return;
   }
 }
 
-export default function QuizType({ data }) {
+export default function QuizType({ data, next, indexNum }) {
   const jsConfetti = new JSConfetti();
   const unjsConfetti = new JSConfetti();
-  const answerTrue = () => {
+  const [answerCheck, setAnswerCheck] = useState({
+    quiz_id: "0",
+    user_answer: "",
+  });
+  const answerTrue = async () => {
+    console.log("맞음");
     jsConfetti.addConfetti({
       confettiColors: [
         "#94A4DD",
@@ -43,38 +72,85 @@ export default function QuizType({ data }) {
     });
   };
   const answerFalse = () => {
+    console.log("틀림");
     unjsConfetti.addConfetti({
       emojis: ["😥", "😭", "😰"],
       emojiSize: 100,
       confettiNumber: 30,
     });
   };
-  const [select, setSelect] = useState("");
-  const [answerCheck, setAnswerCheck] = useState({
-    quizId: data.quizId,
-    userAnswer: "",
-  });
+
+  async function data_load() {
+    setAnswerCheck({
+      ...answerCheck,
+      quiz_id: String(data.quiz_id),
+    });
+  }
+
+  useEffect(() => {
+    if (data) {
+      data_load();
+    }
+  }, [data]);
 
   //
-  let isCorrect = true;
-  //
+  const [isCorrect, setIsCorrect] = useState("");
+
+  async function onClickCheck() {
+    let result;
+    if (data.quiz_type === "CHOICE") {
+      console.log("gu");
+      result = await choice_check(answerCheck);
+    } else {
+      result = await ox_check(answerCheck);
+    }
+
+    setIsCorrect(result.is_correct);
+    result.is_correct ? answerTrue() : answerFalse();
+  }
+
+  const navigate = useNavigate();
 
   return (
     <Wrapper>
       <Header>
-        <Caption>{quiz_type_string[data.quiz_type]}</Caption>
-        <Title>{data.title}</Title>
+        <Caption>{quiz_type_string?.[data?.quiz_type]}</Caption>
+        <Title>{data?.title}</Title>
       </Header>
-      <QuizInput data={data} select={answerCheck} setSelect={setAnswerCheck} />
-      <Help>{data.description}</Help>
+      <QuizInput
+        data={data}
+        select={answerCheck}
+        setSelect={setAnswerCheck}
+        isCorrect={isCorrect}
+      />
+      <Help>{data?.description}</Help>
       <Button>
-        <Btn
-          text="정답확인"
-          disabled={answerCheck.userAnswer === ""}
-          onClick={() => {
-            isCorrect ? answerTrue() : answerFalse();
-          }}
-        />
+        {isCorrect === "" ? (
+          <Btn
+            text="정답확인"
+            disabled={answerCheck.user_answer === ""}
+            onClick={onClickCheck}
+          />
+        ) : indexNum === 9 ? (
+          <Btn
+            text="점수확인"
+            onClick={() => {
+              navigate("/score");
+            }}
+          />
+        ) : (
+          <Btn
+            text="다음문제"
+            onClick={() => {
+              setAnswerCheck({
+                quiz_id: "0",
+                user_answer: "",
+              });
+              setIsCorrect("");
+              next();
+            }}
+          />
+        )}
       </Button>
     </Wrapper>
   );

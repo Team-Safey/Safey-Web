@@ -5,7 +5,7 @@ import Horizontal from "../Components/home/horizontal";
 import { Home_Icon, Hammer, Bed, Car, Refresh } from "../assets/icon";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../apis/user";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const quizPackage = [
   {
@@ -35,10 +35,15 @@ export default function Home() {
   const [name, setName] = useState("");
 
   async function userName() {
-    const result = await getUser();
-    setName(result.name);
+    try {
+      const result = await getUser();
+      setName(result.name);
+    } catch (e) {}
   }
-  userName();
+
+  useEffect(() => {
+    userName();
+  }, []);
 
   return (
     <>
@@ -51,10 +56,11 @@ export default function Home() {
       </UserContainer>
       <Taps>
         <Horizontal
-          title="명예의 전당"
-          caption="문제를 가장 잘 해결한 사람을 만나보세요!"
-          onClick={() => navi("/ranking")}
+          title="랜덤으로 문제풀기"
+          caption="어떤 문제를 풀어야 할지 모르겠다구요?"
+          img={Refresh}
         />
+
         <QuizGrid>
           {quizPackage.map((item, index) => (
             <QuizTap
@@ -67,9 +73,9 @@ export default function Home() {
           ))}
         </QuizGrid>
         <Horizontal
-          title="랜덤으로 문제풀기"
-          caption="어떤 문제를 풀어야 할지 모르겠다구요?"
-          img={Refresh}
+          title="명예의 전당"
+          caption="문제를 가장 잘 해결한 사람을 만나보세요!"
+          onClick={() => navi("/ranking")}
         />
       </Taps>
     </>
