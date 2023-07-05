@@ -1,9 +1,9 @@
 import styled, { css } from "styled-components";
 
-export default function Btn({ disabled, text, onClick, 답 }) {
+export default function Btn({ disabled, text, onClick, isCorrect }) {
   return (
     <Jeongdab
-      답={답}
+      답={isCorrect}
       isDisabled={!disabled}
       disabled={disabled}
       onClick={onClick}
@@ -15,8 +15,7 @@ export default function Btn({ disabled, text, onClick, 답 }) {
 const Jeongdab = styled.button`
   height: 50px;
   width: 100%;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: 14px;
   border-radius: 12px;
   color: white;
   line-height: 50px;
