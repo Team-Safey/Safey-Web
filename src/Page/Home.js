@@ -4,6 +4,8 @@ import QuizTap from "../Components/home/quizTap";
 import Horizontal from "../Components/home/horizontal";
 import { Home_Icon, Hammer, Bed, Car, Refresh } from "../assets/icon";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../apis/user";
+import { useState } from "react";
 
 const quizPackage = [
   {
@@ -30,13 +32,20 @@ const quizPackage = [
 
 export default function Home() {
   const navi = useNavigate();
+  const [name, setName] = useState("");
+
+  async function userName() {
+    const result = await getUser();
+    setName(result.name);
+  }
+  userName();
 
   return (
     <>
       <UserContainer>
         <Hello>
           <img src={Logo} />
-          <HelloText>김대희님 안녕하세요 :)</HelloText>
+          <HelloText>{name}님 안녕하세요 :)</HelloText>
         </Hello>
         <Caption>문제를 풀면서 안전 지식을 늘려보아요!</Caption>
       </UserContainer>
@@ -47,8 +56,9 @@ export default function Home() {
           onClick={() => navi("/ranking")}
         />
         <QuizGrid>
-          {quizPackage.map((item) => (
+          {quizPackage.map((item, index) => (
             <QuizTap
+              key={index}
               title={item.title}
               caption={item.caption}
               img={item.img}
