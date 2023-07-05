@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 
-export default function Jugeo({ disabled, onClick, isSelect }) {
+export default function Week({ disabled, onClick, isSelect }) {
   return (
-    <Jugeos
+    <Weeks
       isSelect={isSelect}
       isDisabled={disabled}
       disabled={disabled}
       onClick={onClick}
     >
-      주거 안전
-    </Jugeos>
+      이번 주
+    </Weeks>
   );
 }
-const Jugeos = styled.button`
+const Weeks = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 16px;

@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 
-export default function Saenghwal({ disabled, onClick, isSelect }) {
+export default function Year({ disabled, onClick, isSelect }) {
   return (
-    <Saenghwals
+    <Years
       isSelect={isSelect}
       isDisabled={disabled}
       disabled={disabled}
       onClick={onClick}
     >
-      생활 안전
-    </Saenghwals>
+      올해
+    </Years>
   );
 }
-const Saenghwals = styled.button`
+const Years = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 16px;

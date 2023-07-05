@@ -1,18 +1,18 @@
 import styled, { css } from "styled-components";
 
-export default function Gyotong({ disabled, onClick, isSelect }) {
+export default function Month({ disabled, onClick, isSelect }) {
   return (
-    <Gyotongs
+    <Months
       isSelect={isSelect}
       isDisabled={disabled}
       disabled={disabled}
       onClick={onClick}
     >
-      교통 안전
-    </Gyotongs>
+      이번 달
+    </Months>
   );
 }
-const Gyotongs = styled.button`
+const Months = styled.button`
   font-weight: bold;
   border: none;
   border-radius: 16px;

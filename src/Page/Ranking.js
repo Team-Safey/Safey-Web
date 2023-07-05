@@ -1,9 +1,8 @@
 import styled from "styled-components";
-import Gyotong from "../Components/Gyotong";
+import Month from "../Components/Month";
 import React, { useState } from "react";
-import Saenghwal from "../Components/Saenghwal";
-import Saneob from "../Components/Saneob";
-import Jugeo from "../Components/Jugeo";
+import Week from "../Components/Week";
+import Year from "../Components/Year";
 
 export default function Ranking() {
   const [select, setSelect] = useState("");
@@ -11,32 +10,25 @@ export default function Ranking() {
     <Gray>
       <Myeongye>명예의전당</Myeongye>
       <Date>
-        <Gyotong
-          isSelect={select === "교통 안전" && true}
+        <Week
+          isSelect={select === "이번 주" && true}
           disabled={false}
           onClick={() => {
-            setSelect("교통 안전");
+            setSelect("이번 주");
           }}
         />
-        <Saenghwal
-          isSelect={select === "생활 안전" && true}
+        <Month
+          isSelect={select === "이번 달" && true}
           disabled={false}
           onClick={() => {
-            setSelect("생활 안전");
+            setSelect("이번 달");
           }}
         />
-        <Saneob
-          isSelect={select === "산업 안전" && true}
+        <Year
+          isSelect={select === "올해" && true}
           disabled={false}
           onClick={() => {
-            setSelect("산업 안전");
-          }}
-        />
-        <Jugeo
-          isSelect={select === "주거 안전" && true}
-          disabled={false}
-          onClick={() => {
-            setSelect("주거 안전");
+            setSelect("올해");
           }}
         />
       </Date>
