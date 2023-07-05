@@ -2,7 +2,15 @@ import styled from "styled-components";
 import { Logo } from "../assets/index";
 import QuizTap from "../Components/home/quizTap";
 import Horizontal from "../Components/home/horizontal";
-import { Home_Icon, Hammer, Bed, Car, Refresh } from "../assets/icon";
+import {
+  Home_Icon,
+  Hammer,
+  Bed,
+  Car,
+  Refresh,
+  Trophy,
+  Setting,
+} from "../assets/icon";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../apis/user";
 import { useState, useEffect } from "react";
@@ -59,6 +67,7 @@ export default function Home() {
           title="랜덤으로 문제풀기"
           caption="어떤 문제를 풀어야 할지 모르겠다구요?"
           img={Refresh}
+          onClick={() => navi("/quiz/랜덤")}
         />
 
         <QuizGrid>
@@ -75,7 +84,14 @@ export default function Home() {
         <Horizontal
           title="명예의 전당"
           caption="문제를 가장 잘 해결한 사람을 만나보세요!"
+          img={Trophy}
           onClick={() => navi("/ranking")}
+        />
+        <Horizontal
+          title="마이페이지"
+          caption="내가 해결한 문제를 볼 수 있어요"
+          img={Setting}
+          onClick={() => navi("/Profile")}
         />
       </Taps>
     </>
@@ -85,7 +101,7 @@ export default function Home() {
 const UserContainer = styled.div`
   width: 100%;
   height: 60px;
-  margin-top: 70px;
+  margin-top: 40px;
 `;
 const Hello = styled.div`
   display: flex;
@@ -94,7 +110,7 @@ const Hello = styled.div`
   img {
     width: 35px;
     height: 35px;
-  } 
+  }
 `;
 const HelloText = styled.p`
   font-size: 20px;
@@ -118,4 +134,5 @@ const Taps = styled.div`
   display: flex;
   flex-direction: column;
   gap: 15px;
+  margin-bottom: 20px;
 `;

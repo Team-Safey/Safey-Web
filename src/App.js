@@ -4,16 +4,12 @@ import GlobalStyle from "./GlobalStyle";
 import Ranking from "./Page/Ranking";
 import Home from "./Page/Home";
 import Profile from "./Page/Profile";
-<<<<<<< HEAD
-import Quiz from "./Page/Quiz";
-import Login from "./Page/Login/Login";
-import SignUp from "./Page/Login/SignUp";
 import Score from "./Page/Scroe";
-=======
 import Login from "./Page/Login/Login";
 import SignUp from "./Page/Login/SignUp";
 import Quiz from "./Page/Quiz";
->>>>>>> main
+import MyQuiz from "./Page/MyQuiz";
+import DetailMyQuiz from "./Page/DetailMyQuiz";
 import { RecoilRoot } from "recoil";
 
 function App() {
@@ -28,6 +24,8 @@ function App() {
           <Route path="/ranking" Component={Ranking} />
           <Route path="/quiz/:category" element={<Quiz />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/profile/myQuiz" element={<MyQuiz />} />
+          <Route path="/profile/myQuiz/detail" element={<DetailMyQuiz />} />
           <Route path="/score" element={<Score />} />
         </Routes>
       </RecoilRoot>

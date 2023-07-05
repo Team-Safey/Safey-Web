@@ -6,6 +6,7 @@ import { LeftArrow } from "../assets/icon";
 import { useNavigate } from "react-router-dom";
 import { traffic, life, residential, industrial } from "../apis/quiz";
 import QuizType from "../Components/quiz/quizType";
+import { random_quiz } from "../apis/quiz";
 
 const categoryName = {
   교통안전: traffic(),
@@ -21,8 +22,13 @@ export default function Quiz() {
   const [quizNumber, setQuiNumber] = useState(0);
 
   async function quiz() {
-    const result = await categoryName[category];
-    setQuizList(result.data.quiz_lists);
+    if (category === "랜덤") {
+      const result = await random_quiz();
+      setQuizList(result.quiz_lists);
+    } else {
+      const result = await categoryName[category];
+      setQuizList(result.data.quiz_lists);
+    }
   }
 
   useEffect(() => {
@@ -82,9 +88,4 @@ const GoBack = styled.button`
   img {
     width: 20px;
   }
-`;
-const QuizBox = styled.div`
-  width: 100%;
-  flex: 1;
-  background-color: aqua;
 `;

@@ -41,6 +41,7 @@ export default function Login() {
         />
         <TextInput
           placeholder="비밀번호를 입력해 주세요"
+          isPassword
           value={state.password}
           onChange={(e) =>
             setState({

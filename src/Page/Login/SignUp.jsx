@@ -64,6 +64,7 @@ export default function SignUp() {
           }
         />
         <TextInput
+          isPassword
           placeholder="비밀번호"
           value={state.password}
           onChange={(e) =>
@@ -74,6 +75,7 @@ export default function SignUp() {
           }
         />
         <TextInput
+          isPassword
           placeholder="비밀번호 확인"
           value={state.password_check}
           onChange={(e) =>

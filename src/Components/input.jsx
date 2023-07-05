@@ -6,11 +6,12 @@ export default function TextInput({
   value,
   placeholder,
   onChange,
+  isPassword,
 }) {
   return (
     <>
       <Container
-        type="text"
+        type={isPassword ? "password" : "text"}
         isSuccess={isSuccess}
         isError={isError}
         disabled={isSuccess || isError}

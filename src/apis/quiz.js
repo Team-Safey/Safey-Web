@@ -37,12 +37,12 @@ export const industrial = async () => {
 };
 
 //전체랜덤
-export const all = async () => {
+export const random_quiz = async () => {
   let response;
   await axios
     .get("http://43.202.84.47:8080/quizs/all")
     .then((res) => (response = res));
-  return response;
+  return response.data;
 };
 
 //최근 10문제 점수보기
@@ -96,4 +96,108 @@ export const choice_check = async (body) => {
       response = res.data;
     });
   return response;
+};
+
+// 최근에 푼 모든문제
+export const myQiuzAll = async () => {
+  let response;
+  const accessToken = localStorage.getItem("accessToken");
+  const header = {
+    headers: {
+      accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  if (accessToken) {
+    await axios
+      .get("http://43.202.84.47:8080/quizs/my/all", header)
+      .then((res) => {
+        response = res;
+      });
+  }
+  return response?.data;
+};
+
+// 내가 푼 산업안전 문제
+export const myQiuzIndustrial = async () => {
+  let response;
+  const accessToken = localStorage.getItem("accessToken");
+  const header = {
+    headers: {
+      accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  if (accessToken) {
+    await axios
+      .get("http://43.202.84.47:8080/quizs/my/industrial", header)
+      .then((res) => {
+        response = res;
+        console.log(response.data);
+      });
+  }
+  return response?.data;
+};
+
+// 내가 푼 생활안전 문제
+export const myQiuzLife = async () => {
+  let response;
+  const accessToken = localStorage.getItem("accessToken");
+  const header = {
+    headers: {
+      accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  if (accessToken) {
+    await axios
+      .get("http://43.202.84.47:8080/quizs/my/life", header)
+      .then((res) => {
+        response = res;
+        console.log(response.data);
+      });
+  }
+  return response?.data;
+};
+
+// 내가 푼 주거안전 문제
+export const myQiuzResidential = async () => {
+  let response;
+  const accessToken = localStorage.getItem("accessToken");
+  const header = {
+    headers: {
+      accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  if (accessToken) {
+    await axios
+      .get("http://43.202.84.47:8080/quizs/my/residential", header)
+      .then((res) => {
+        response = res;
+        console.log(response.data);
+      });
+  }
+  return response?.data;
+};
+
+// 내가 푼 교통안전 문제
+export const myQiuzTraffic = async () => {
+  let response;
+  const accessToken = localStorage.getItem("accessToken");
+  const header = {
+    headers: {
+      accept: "*/*",
+      Authorization: `Bearer ${accessToken}`,
+    },
+  };
+  if (accessToken) {
+    await axios
+      .get("http://43.202.84.47:8080/quizs/my/traffic", header)
+      .then((res) => {
+        response = res;
+        console.log(response.data);
+      });
+  }
+  return response?.data;
 };

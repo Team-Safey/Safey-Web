@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import QuizOX from "./QuizOX";
 import { useState, useEffect } from "react";
 import Btn from "../AnsBtn";
@@ -57,7 +57,6 @@ export default function QuizType({ data, next, indexNum }) {
     user_answer: "",
   });
   const answerTrue = async () => {
-    console.log("맞음");
     jsConfetti.addConfetti({
       confettiColors: [
         "#94A4DD",
@@ -72,7 +71,6 @@ export default function QuizType({ data, next, indexNum }) {
     });
   };
   const answerFalse = () => {
-    console.log("틀림");
     unjsConfetti.addConfetti({
       emojis: ["😥", "😭", "😰"],
       emojiSize: 100,
@@ -123,7 +121,7 @@ export default function QuizType({ data, next, indexNum }) {
         setSelect={setAnswerCheck}
         isCorrect={isCorrect}
       />
-      <Help>{data?.description}</Help>
+      <Help isCorrect={isCorrect}>{data?.description}</Help>
       <Button>
         {isCorrect === "" ? (
           <Btn
@@ -186,6 +184,11 @@ const Help = styled.p`
   color: #000;
   line-height: 13px;
   margin-bottom: 10px;
+  ${(props) =>
+    props.isCorrect === "" &&
+    css`
+      color: transparent;
+    `}
 `;
 const Button = styled.div`
   display: block;

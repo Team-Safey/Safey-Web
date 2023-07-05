@@ -3,6 +3,7 @@ import { getUser } from "../apis/user";
 import { useState, useEffect } from "react";
 import { LeftArrow, RightArrow } from "../assets/icon";
 import { useNavigate } from "react-router-dom";
+import { logout, delete_user } from "../apis/user";
 
 export default function Profile() {
   const navi = useNavigate();
@@ -41,19 +42,23 @@ export default function Profile() {
           <p className="nm">{user.name}</p>
           <p className="em">{user.email}</p>
           <Scores className="score">
-            <p className="sco">나의 총점수는</p>
-            <p className="co">{user.score}</p>
+            <p>나의 총점수는</p>
+            <p>{user.score}점</p>
           </Scores>
         </My>
-        <MyProblem>
+        <MyProblem
+          onClick={() => {
+            window.location.replace("/profile/myQuiz");
+          }}
+        >
           내가 푼 문제 보기
           <img src={RightArrow} />
         </MyProblem>
-        <LogOut>
+        <LogOut onClick={() => logout()}>
           로그아웃
           <img src={RightArrow} />
         </LogOut>
-        <Withdrawal>
+        <Withdrawal onClick={() => delete_user()}>
           회원탈퇴
           <img src={RightArrow} />
         </Withdrawal>
@@ -62,17 +67,18 @@ export default function Profile() {
   );
 }
 const Scores = styled.div`
-  margin-left: 60%;
-  margin-top: 15%;
+  flex: 1;
   display: flex;
-  align-items:center;
-  gap:8px;
-  .co {
-    font-size: 140%;
+  align-items: end;
+  justify-content: end;
+  gap: 8px;
+  p:nth-child(2) {
+    font-size: 24px;
     font-weight: bold;
+    line-height: 24px;
     color: #4863c5;
   }
-  .sco {
+  p:nth-child(1) {
     font-size: 12px;
     font-weight: bold;
   }
@@ -94,11 +100,13 @@ const Mypage = styled.p`
 const My = styled.div`
   margin-top: 20px;
   width: 100%;
-  height: 145px;
+  height: 120px;
   box-shadow: 0px 0px 15px 0px rgba(105, 105, 105, 0.12);
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 20px;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
 
   .nm {
     font-weight: bold;
