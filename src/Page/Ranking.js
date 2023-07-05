@@ -8,7 +8,7 @@ export default function Ranking() {
   const [select, setSelect] = useState("");
   return (
     <Gray>
-      <Myeongye>명예의전당</Myeongye>
+      <Myeongye>명예의 전당</Myeongye>
       <Date>
         <Week
           isSelect={select === "이번 주" && true}
@@ -32,6 +32,7 @@ export default function Ranking() {
           }}
         />
       </Date>
+      
     </Gray>
   );
 }
