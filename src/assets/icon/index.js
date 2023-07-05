@@ -4,3 +4,4 @@ export { default as Car } from "./car.png";
 export { default as Home_Icon } from "./home.png";
 export { default as Hammer } from "./hammer.png";
 export { default as Refresh } from "./refresh.png";
+export {default as RightArrow} from "./arrow_right.svg";

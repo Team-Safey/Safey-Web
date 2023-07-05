@@ -88,7 +88,7 @@ const Hello = styled.div`
   img {
     width: 35px;
     height: 35px;
-  }
+  } 
 `;
 const HelloText = styled.p`
   font-size: 20px;
