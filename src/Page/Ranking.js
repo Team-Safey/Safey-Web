@@ -43,9 +43,126 @@ export default function Ranking() {
           }}
         />
       </Date>
+      <MyRan>
+        <p className="number">23</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </MyRan>
+      <Ran>
+        <p className="number">1</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">2</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">3</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">4</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">5</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">6</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
+      <Ran>
+        <p className="number">7</p>
+        <My>
+          <p className="name">김대희</p>
+          <p className="Jeongdab">정답률 79.2%</p>
+        </My>
+        <p className="score">300점</p>
+      </Ran>
     </>
   );
 }
+const My = styled.div`
+  align-items: center;
+  margin-left: 5%;
+  .Jeongdab {
+    font-size: 5px;
+  }
+  .name {
+    font-size: 9px;
+  }
+`;
+const Ran = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0px 0px 15px 0px rgba(105, 105, 105, 0.12);
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  font-size: 15px;
+  .number {
+    height: 20px;
+    width: 20px;
+  }
+  .score {
+    margin-left: 50%;
+    display: flex;
+  }
+`;
+const MyRan = styled.div`
+  margin-top: 20px;
+  width: 100%;
+  height: 60px;
+  border: 1px solid #4863c5;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 15px;
+  font-size: 15px;
+  .number {
+    height: 20px;
+    width: 20px;
+  }
+  .score {
+    margin-left: 50%;
+    display: flex;
+  }
+`;
 const Header = styled.div`
   width: 100%;
   height: 50px;
@@ -58,12 +175,12 @@ const Myeongye = styled.div`
   font-size: 20px;
   font-weight: 600;
   color: #333333;
-
 `;
 const Date = styled.div`
+  margin-top: 20px;
   justify-content: space-evenly 3px;
   display: flex;
-  gap:50px;
+  gap: 50px;
 `;
 const GoBack = styled.button`
   width: 24px;
