@@ -6,6 +6,7 @@ import { useRecoilState } from "recoil";
 import { rankingCategory } from "../Atom/rankingAtom";
 import UserRank from "../Components/ranking/userBox";
 import { weeklyRanking, monthlyRanking, yearlyRanking } from "../apis/user";
+import { getUser } from "../apis/user";
 
 const categoryFunction = {
   week: weeklyRanking(),
@@ -17,23 +18,47 @@ export default function Ranking() {
   const navi = useNavigate();
   const [categoryState, setCategoryState] = useRecoilState(rankingCategory);
   const [list, setList] = useState([]);
+  const [myProfile, setMyProfile] = useState({}); // 추가된 부분
+  const [getProfile, setGetProfile] = useState();
 
   const getList = async () => {
     const answer = await categoryFunction[categoryState];
-    console.log(answer.user_scores);
+    console.log(answer);
     setList(answer.user_scores);
   };
+
+  async function getProfileFunc() {
+    const result = await getUser();
+    setGetProfile(result);
+  }
+  useEffect(() => {
+    getProfileFunc();
+  }, []);
 
   useEffect(() => {
     getList();
   }, [categoryState]);
+
+  useEffect(() => {
+    if (getProfile) {
+      const profile = list.find((item) => item.user_id === getProfile.user_id);
+      const index = list.findIndex(
+        (item) => item.user_id === getProfile.user_id
+      );
+      if (profile) {
+        setMyProfile({ ...profile, rank: index + 1 });
+      } else {
+        setMyProfile({});
+      }
+    }
+  }, [getProfile]);
 
   return (
     <>
       <Header>
         <GoBack
           onClick={() => {
-            navi(-1);
+            navi("/");
           }}
         >
           <img src={LeftArrow} />
@@ -67,8 +92,16 @@ export default function Ranking() {
         </CateBtn>
       </Category>
       <ListComponent>
+        <UserRank
+          correct_rate={myProfile?.correct_ratio}
+          ranke={myProfile?.rank}
+          name={myProfile?.name}
+          score={myProfile?.total_score}
+          isMy
+        />
         {list.map((item, index) => (
           <UserRank
+            correct_rate={item?.correct_ratio}
             key={index}
             ranke={index + 1}
             name={item?.name}

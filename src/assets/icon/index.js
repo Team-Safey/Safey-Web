@@ -7,3 +7,5 @@ export { default as Refresh } from "./refresh.png";
 export { default as RightArrow } from "./arrow_right.svg";
 export { default as Trophy } from "./trophy.png";
 export { default as Setting } from "./setting.png";
+export { default as Medal } from "./medal.svg";
+export { default as Crown } from "./crown.svg";

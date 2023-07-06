@@ -11,8 +11,9 @@ export default function Choice({ data, select, setSelect, isCorrect }) {
           my={index+1}
           choice_answer={choice_answer}
           isCorrect={isCorrect}
+          disabled={isCorrect !== ''}
           // desabled={isCorrect===''}
-          isSelected={select.user_answer === index + 1}
+          isSelected={select.user_answer == index + 1}
           onClick={() => {
             setSelect({
               ...select,

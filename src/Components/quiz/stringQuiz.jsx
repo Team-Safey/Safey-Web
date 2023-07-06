@@ -2,6 +2,7 @@ import styled from "styled-components";
 import TextInput from "../input";
 
 export default function StringQuiz({ data, state, setState, isCorrect }) {
+  
   return (
     <Wrapper>
       <TextInput

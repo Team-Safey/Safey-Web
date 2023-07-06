@@ -60,30 +60,41 @@ export default function DetailMyQuiz() {
         </GoBack>
         <p>{dataState.quiz_id}번</p>
       </Header>
-      <Question>
-        <Caption>{quiz_type_string?.[dataState.quiz_type]}</Caption>
-        <Title>{dataState.title}</Title>
-      </Question>
-      <Container>
-        <InputBox>
-          <QuizInput
-            data={dataState}
-            select={{
-              quiz_id: dataState.quiz_id,
-              user_answer: dataState.user_answer,
-            }}
-            isCorrect={dataState.isCorrect}
-          />
-        </InputBox>
-        <Help>{dataState.description}</Help>
+      <Wrapper>
+        <Question>
+          <Caption>{quiz_type_string?.[dataState?.quiz_type]}</Caption>
+          <Title>{dataState?.title}</Title>
+        </Question>
+        <QuizInput
+          data={dataState}
+          select={{
+            quiz_id: dataState.quiz_id,
+            user_answer: dataState.user_answer,
+          }}
+          isCorrect={dataState.is_correct}
+        />
+        <Help>{dataState?.description}</Help>
         <Button>
-          <Btn text="닫기" onClick={() => navi(-1)} />
+          <Btn
+            text="닫기"
+            onClick={() => {
+              navi(-1);
+            }}
+          />
         </Button>
-      </Container>
+      </Wrapper>
     </Warpper>
   );
 }
 
+const Wrapper = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
+`;
 const Button = styled.div`
   display: block;
   margin-top: auto;

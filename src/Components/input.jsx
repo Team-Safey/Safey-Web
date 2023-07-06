@@ -35,10 +35,14 @@ const Container = styled.input`
     props.isSuccess === true
       ? css`
           border: 2px solid #68cd72;
+          color: #68cd72;
+          font-weight: 600;
         `
       : props.isError === true
       ? css`
           border: 2px solid #e54949;
+          color: #e54949;
+          font-weight: 600;
         `
       : css`
           border: 1px solid #e0e0e0;

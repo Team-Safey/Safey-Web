@@ -85,7 +85,7 @@ export default function Home() {
           title="명예의 전당"
           caption="문제를 가장 잘 해결한 사람을 만나보세요!"
           img={Trophy}
-          onClick={() => navi("/ranking")}
+          onClick={() => window.location.replace("/ranking")}
         />
         <Horizontal
           title="마이페이지"
