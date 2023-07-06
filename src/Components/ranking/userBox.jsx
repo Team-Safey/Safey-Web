@@ -8,7 +8,7 @@ export default function UserRank({ ranke, name, correct_rate, score, isMy }) {
       <Rank>{ranke}</Rank>
       <User>
         <p>{name}</p>
-        <p>{correct_rate && `정답률 ${rounded}%`}</p>
+        <p>{correct_rate !== '' && `정답률 ${rounded}%`}</p>
         {isMy !== true && ranke === 1 && (
           <MedalBox>
             <img src={Crown} />
