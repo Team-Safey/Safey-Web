@@ -3,7 +3,7 @@ import axios from "axios";
 export const signUp = async (body) => {
   let i;
   await axios
-    .post("http://43.202.84.47:8080/users", body)
+    .post(`${process.env.REACT_APP_BASE_URL}/users`, body)
     .then((response) => {
       localStorage.setItem("accessToken", response.data.access_token);
       localStorage.setItem("refreshToken", response.data.refresh_token);
@@ -16,7 +16,7 @@ export const signUp = async (body) => {
 export const login = async (body) => {
   let i;
   await axios
-    .post("http://43.202.84.47:8080/users/token", body)
+    .post(`${process.env.REACT_APP_BASE_URL}/users/token`, body)
     .then((response) => {
       localStorage.setItem("accessToken", response.data.access_token);
       localStorage.setItem("refreshToken", response.data.refresh_token);
