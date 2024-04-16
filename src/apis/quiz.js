@@ -4,7 +4,7 @@ import axios from "axios";
 export const traffic = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/quizs/traffic")
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/traffic`)
     .then((res) => (response = res));
   return response;
 };
@@ -13,7 +13,7 @@ export const traffic = async () => {
 export const residential = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/quizs/residential")
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/residential`)
     .then((res) => (response = res));
   return response;
 };
@@ -22,7 +22,7 @@ export const residential = async () => {
 export const life = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/quizs/life")
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/life`)
     .then((res) => (response = res));
   return response;
 };
@@ -31,7 +31,7 @@ export const life = async () => {
 export const industrial = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/quizs/industrial")
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/industrial`)
     .then((res) => (response = res));
   return response;
 };
@@ -40,7 +40,7 @@ export const industrial = async () => {
 export const random_quiz = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/quizs/all")
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/all`)
     .then((res) => (response = res));
   return response.data;
 };
@@ -56,7 +56,7 @@ export const score = async () => {
     },
   };
   await axios
-    .get("http://43.202.84.47:8080/quizs/score", header)
+    .get(`${process.env.REACT_APP_BASE_URL}/quizs/score`, header)
     .then((res) => (response = res));
   return response.data;
 };
@@ -73,7 +73,7 @@ export const ox_check = async (body) => {
     },
   };
   await axios
-    .post("http://43.202.84.47:8080/quizs/problem", body, header)
+    .post(`${process.env.REACT_APP_BASE_URL}/quizs/problem`, body, header)
     .then((res) => {
       response = res.data;
     });
@@ -91,7 +91,7 @@ export const choice_check = async (body) => {
     },
   };
   await axios
-    .post("http://43.202.84.47:8080/quizs/problem/choice", body, header)
+    .post(`${process.env.REACT_APP_BASE_URL}/quizs/problem/choice`, body, header)
     .then((res) => {
       response = res.data;
     });
@@ -110,7 +110,7 @@ export const myQiuzAll = async () => {
   };
   if (accessToken) {
     await axios
-      .get("http://43.202.84.47:8080/quizs/my/all", header)
+      .get(`${process.env.REACT_APP_BASE_URL}/quizs/my/all`, header)
       .then((res) => {
         response = res;
       });
@@ -130,7 +130,7 @@ export const myQiuzIndustrial = async () => {
   };
   if (accessToken) {
     await axios
-      .get("http://43.202.84.47:8080/quizs/my/industrial", header)
+      .get(`${process.env.REACT_APP_BASE_URL}/quizs/my/industrial`, header)
       .then((res) => {
         response = res;
         console.log(response.data);
@@ -151,7 +151,7 @@ export const myQiuzLife = async () => {
   };
   if (accessToken) {
     await axios
-      .get("http://43.202.84.47:8080/quizs/my/life", header)
+      .get(`${process.env.REACT_APP_BASE_URL}/quizs/my/life`, header)
       .then((res) => {
         response = res;
         console.log(response.data);
@@ -172,7 +172,7 @@ export const myQiuzResidential = async () => {
   };
   if (accessToken) {
     await axios
-      .get("http://43.202.84.47:8080/quizs/my/residential", header)
+      .get(`${process.env.REACT_APP_BASE_URL}/quizs/my/residential`, header)
       .then((res) => {
         response = res;
         console.log(response.data);
@@ -193,7 +193,7 @@ export const myQiuzTraffic = async () => {
   };
   if (accessToken) {
     await axios
-      .get("http://43.202.84.47:8080/quizs/my/traffic", header)
+      .get(`${process.env.REACT_APP_BASE_URL}/quizs/my/traffic`, header)
       .then((res) => {
         response = res;
         console.log(response.data);
