@@ -10,7 +10,7 @@ export const getUser = async () => {
   };
 
   await axios
-    .get("http://43.202.84.47:8080/users", { headers })
+    .get(`${process.env.REACT_APP_BASE_URL}/users`, { headers })
     .then((response) => {
       반환값 = response.data;
     })
@@ -26,7 +26,7 @@ export const getUser = async () => {
 export const weeklyRanking = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/users/week")
+    .get(`${process.env.REACT_APP_BASE_URL}/users/week`)
     .then((res) => (response = res));
   return response.data;
 };
@@ -34,7 +34,7 @@ export const weeklyRanking = async () => {
 export const monthlyRanking = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/users/month")
+    .get(`${process.env.REACT_APP_BASE_URL}/users/month`)
     .then((res) => (response = res));
   return response.data;
 };
@@ -42,7 +42,7 @@ export const monthlyRanking = async () => {
 export const yearlyRanking = async () => {
   let response;
   await axios
-    .get("http://43.202.84.47:8080/users/year")
+    .get(`${process.env.REACT_APP_BASE_URL}/users/year`)
     .then((res) => (response = res));
   return response.data;
 };
@@ -57,7 +57,7 @@ export const logout = async () => {
     },
   };
   await axios
-    .delete("http://43.202.84.47:8080/users/logout", header)
+    .delete(`${process.env.REACT_APP_BASE_URL}/users/logout`, header)
     .then((res) => {
       response = res;
       localStorage.removeItem("refreshToken");
@@ -78,7 +78,7 @@ export const delete_user = async () => {
     },
   };
   await axios
-    .delete("http://43.202.84.47:8080/users/leave", header)
+    .delete(`${process.env.REACT_APP_BASE_URL}/users/leave`, header)
     .then((res) => {
       response = res;
       localStorage.removeItem("refreshToken");
